@@ -68,6 +68,10 @@ class User < ActiveRecord::Base
   def unfollow!(followed)
     relationships.find_by_followed_id(followed).destroy
   end
+  
+  def feed
+    Micropost.from_users_followed_by(self)
+  end
      
   private
   
